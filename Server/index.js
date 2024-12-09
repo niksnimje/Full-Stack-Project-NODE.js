@@ -9,6 +9,10 @@ app.use(express.json())
 
 app.use("/user",userRourtes)
 
+app.get("/",(req,res)=>{
+    res.send("Hellow")
+})
+
 app.listen(process.env.PORT || 3000,async()=>{
     try {
         await connection
