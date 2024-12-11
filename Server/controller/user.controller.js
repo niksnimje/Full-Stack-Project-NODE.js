@@ -21,10 +21,10 @@ const singup= async(req,res)=>{
             return res.status(200).send({message:"Okay User Hai "})
         }
 
-        bcrypt.compare(password, 5, async(err, hash)=> {
-            
+        bcrypt.hash(password, 5, async(err, hash)=> {
             if(err)
             {
+                console.log(err)
                 return res.status(400).send({message:"Error in Hash Password"})
             }
 
@@ -43,4 +43,13 @@ const singup= async(req,res)=>{
 
 }
 
-module.exports={singup}
+const singin=async(req,res)=>{
+    const {email,password}=req.body
+
+    if(!email || !password){
+        return res.status(400).json({message:"Please Fill all information"})
+    }
+    
+}
+
+module.exports={singup,singin}
