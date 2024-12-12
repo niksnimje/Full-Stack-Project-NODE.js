@@ -8,6 +8,9 @@ const jwt=require("jsonwebtoken")
 
 
 
+
+
+
 const singup= async(req,res)=>{
 
     const {name,email,password}=req.body
@@ -68,6 +71,7 @@ const singin=async(req,res)=>{
         }
         if(result){
             const {password,...rest}=isExistUser._doc
+<<<<<<< HEAD
 
             jwt.sign({userData:rest},process.env.privateKey, function(err, token) {
                 if(err)
@@ -81,6 +85,9 @@ const singin=async(req,res)=>{
             });
 
 
+=======
+            return res.status(200).json({message:"Login Successfull",userData:rest})
+>>>>>>> 1fe31b505c92edd279d44fb84bca0fc2dedbdc4a
         }
         else
         {
