@@ -67,7 +67,7 @@ const singin=async(req,res)=>{
             const {password,...rest}=isExistUser._doc
 
             jwt.sign({userId:rest},process.env.privateKey, function(err, token) {
-                console.log(token)
+                
                 if(err)
                 {
                     return res.status(400).json({message:"Json Token Error Not Create Token"})
