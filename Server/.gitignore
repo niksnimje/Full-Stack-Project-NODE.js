@@ -1,3 +1,30 @@
 .env
 
 node_modules
+
+
+
+const dotenv=require("dotenv")
+dotenv.config()
+const jwt=require("jsonwebtoken")
+
+const isAuth=(req,res,next)=>{
+    const {verificationToken}=req.cookies
+    console.log(verificationToken)
+    if(!verificationToken){
+        return res.status(401).json({message:'You are not authenticated! Please Login Again'})
+    }
+
+    jwt.verify(verificationToken, process.env.privateKey, function(err, decoded) {
+        if(err)
+        {
+            return res.status(401).json({message:err})
+        }
+        console.log(decoded)
+
+    });
+
+    // next()
+}
+
+module.exports=isAuth
