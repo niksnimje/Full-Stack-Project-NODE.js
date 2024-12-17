@@ -112,4 +112,8 @@ const updateNotes=async(req,res)=>{
 
 }
 
-module.exports = { notesCreate, notesDelete, getAllNotesUser, getSingelNotesUser,updateNotes }
+const getAllNotesAdmin=async(req,res)=>{
+    
+}
+
+module.exports = { notesCreate, notesDelete, getAllNotesUser, getSingelNotesUser,updateNotes,getAllNotesAdmin }
