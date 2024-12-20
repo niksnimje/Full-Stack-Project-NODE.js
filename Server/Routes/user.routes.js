@@ -1,5 +1,5 @@
 const express=require("express")
-const { singup, singin } = require("../Controller/user.controller")
+const { singup, singin } = require("../controller/user.controller")
 
 
 

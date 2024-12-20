@@ -4,6 +4,7 @@ dotenv.config()
 const bcrypt=require("bcrypt")
 const jwt=require("jsonwebtoken")
 
+
 const singup= async(req,res)=>{
 
     const {name,email,password}=req.body
@@ -31,7 +32,6 @@ const singup= async(req,res)=>{
             }
 
             await UserModel.create({name,email,password:hash})
-            
             res.status(201).send({message:"User Create Successfully"})
 
         });
@@ -63,17 +63,19 @@ const singin=async(req,res)=>{
         if(err){
             return res.status(400).json({message:"Error in Compare Password"})
         }
+
         if(result){
             const {password,...rest}=isExistUser._doc
-
+            
+            // jwt.sign({userData:rest},process.env.privateKey, function(err, token) {
             jwt.sign({userId:rest},process.env.privateKey, function(err, token) {
                 
                 if(err)
                 {
                     return res.status(400).json({message:"Json Token Error Not Create Token"})
-
                 }
-                 res.cookie("verificationToken",token).status(200).json({message:"Login Successfull",userData:rest})
+                
+                return res.cookie("verificationToken",token).status(200).json({message:"Login Successfull",userData:rest})
             });
         }
         else

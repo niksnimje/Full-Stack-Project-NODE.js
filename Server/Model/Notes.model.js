@@ -18,4 +18,4 @@ const NoteScheama=new mongoose.Schema({
 
 const NotesModel=mongoose.model("notes",NoteScheama)
 
-module.exports =NotesModel;
+module.exports=NotesModel

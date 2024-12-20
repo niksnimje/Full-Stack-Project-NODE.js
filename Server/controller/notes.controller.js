@@ -114,6 +114,30 @@ const updateNotes=async(req,res)=>{
 
 const getAllNotesAdmin=async(req,res)=>{
     
+    try
+    {
+        const totalNotes=await NotesModel.find()
+        
+        if(!totalNotes.length>0){
+            return res.status(404).json({ message: "No Notes Found" })
+        }
+        res.status(200).json({message:"Notes Get Success",totalNotes})
+    }
+    catch(error)
+    {
+        return res.status(404).json({ message:error })
+    }
 }
 
-module.exports = { notesCreate, notesDelete, getAllNotesUser, getSingelNotesUser,updateNotes,getAllNotesAdmin }
+const DeleteAllNotesAdmin=async(req,res)=>{
+    try{
+        await  NotesModel.deleteMany()
+        res.status(200).json({message:"Notes Delete SuccessFully"})
+    }   
+    catch(error){
+        return res.status(404).json({ message:error })
+    }
+}
+
+
+module.exports = { notesCreate, notesDelete, getAllNotesUser, getSingelNotesUser,updateNotes,getAllNotesAdmin ,DeleteAllNotesAdmin }
